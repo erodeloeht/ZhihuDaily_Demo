@@ -1,0 +1,291 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FC8FD8381C790FB900C47EA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8371C790FB900C47EA1 /* AppDelegate.swift */; };
+		FC8FD83A1C790FB900C47EA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8391C790FB900C47EA1 /* ViewController.swift */; };
+		FC8FD83D1C790FB900C47EA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8FD83B1C790FB900C47EA1 /* Main.storyboard */; };
+		FC8FD83F1C790FB900C47EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */; };
+		FC8FD8421C790FB900C47EA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8FD8401C790FB900C47EA1 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FC8FD8341C790FB900C47EA1 /* Zhihu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zhihu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC8FD8371C790FB900C47EA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FC8FD8391C790FB900C47EA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FC8FD83C1C790FB900C47EA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FC8FD8411C790FB900C47EA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FC8FD8431C790FB900C47EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FC8FD8311C790FB900C47EA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FC8FD82B1C790FB900C47EA1 = {
+			isa = PBXGroup;
+			children = (
+				FC8FD8361C790FB900C47EA1 /* Zhihu */,
+				FC8FD8351C790FB900C47EA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FC8FD8351C790FB900C47EA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC8FD8341C790FB900C47EA1 /* Zhihu.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC8FD8361C790FB900C47EA1 /* Zhihu */ = {
+			isa = PBXGroup;
+			children = (
+				FC8FD8371C790FB900C47EA1 /* AppDelegate.swift */,
+				FC8FD8391C790FB900C47EA1 /* ViewController.swift */,
+				FC8FD83B1C790FB900C47EA1 /* Main.storyboard */,
+				FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */,
+				FC8FD8401C790FB900C47EA1 /* LaunchScreen.storyboard */,
+				FC8FD8431C790FB900C47EA1 /* Info.plist */,
+			);
+			path = Zhihu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FC8FD8331C790FB900C47EA1 /* Zhihu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC8FD8461C790FB900C47EA1 /* Build configuration list for PBXNativeTarget "Zhihu" */;
+			buildPhases = (
+				FC8FD8301C790FB900C47EA1 /* Sources */,
+				FC8FD8311C790FB900C47EA1 /* Frameworks */,
+				FC8FD8321C790FB900C47EA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Zhihu;
+			productName = Zhihu;
+			productReference = FC8FD8341C790FB900C47EA1 /* Zhihu.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FC8FD82C1C790FB900C47EA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Lisong Xu";
+				TargetAttributes = {
+					FC8FD8331C790FB900C47EA1 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = FC8FD82F1C790FB900C47EA1 /* Build configuration list for PBXProject "Zhihu" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FC8FD82B1C790FB900C47EA1;
+			productRefGroup = FC8FD8351C790FB900C47EA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FC8FD8331C790FB900C47EA1 /* Zhihu */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FC8FD8321C790FB900C47EA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC8FD8421C790FB900C47EA1 /* LaunchScreen.storyboard in Resources */,
+				FC8FD83F1C790FB900C47EA1 /* Assets.xcassets in Resources */,
+				FC8FD83D1C790FB900C47EA1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FC8FD8301C790FB900C47EA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC8FD83A1C790FB900C47EA1 /* ViewController.swift in Sources */,
+				FC8FD8381C790FB900C47EA1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FC8FD83B1C790FB900C47EA1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC8FD83C1C790FB900C47EA1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FC8FD8401C790FB900C47EA1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC8FD8411C790FB900C47EA1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FC8FD8441C790FB900C47EA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FC8FD8451C790FB900C47EA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FC8FD8471C790FB900C47EA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Zhihu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ur.leo.Zhihu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FC8FD8481C790FB900C47EA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Zhihu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ur.leo.Zhihu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FC8FD82F1C790FB900C47EA1 /* Build configuration list for PBXProject "Zhihu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC8FD8441C790FB900C47EA1 /* Debug */,
+				FC8FD8451C790FB900C47EA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC8FD8461C790FB900C47EA1 /* Build configuration list for PBXNativeTarget "Zhihu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC8FD8471C790FB900C47EA1 /* Debug */,
+				FC8FD8481C790FB900C47EA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FC8FD82C1C790FB900C47EA1 /* Project object */;
+}
