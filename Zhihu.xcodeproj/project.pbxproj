@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2FEFFE84411C1E6723CD999 /* Pods_Zhihu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4174A25882CA5B20EF5B00 /* Pods_Zhihu.framework */; };
 		FC8FD8381C790FB900C47EA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8371C790FB900C47EA1 /* AppDelegate.swift */; };
 		FC8FD83A1C790FB900C47EA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8391C790FB900C47EA1 /* ViewController.swift */; };
 		FC8FD83D1C790FB900C47EA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8FD83B1C790FB900C47EA1 /* Main.storyboard */; };
 		FC8FD83F1C790FB900C47EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */; };
 		FC8FD8421C790FB900C47EA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8FD8401C790FB900C47EA1 /* LaunchScreen.storyboard */; };
+		FC8FD8581C7AAD9E00C47EA1 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8551C7AAD9E00C47EA1 /* ArticleTableViewCell.swift */; };
+		FC8FD8591C7AAD9E00C47EA1 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */; };
+		FC8FD85A1C7AAD9E00C47EA1 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B4174A25882CA5B20EF5B00 /* Pods_Zhihu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zhihu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9A2681D8B1AE4004EEE38C5 /* Pods-Zhihu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zhihu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zhihu/Pods-Zhihu.debug.xcconfig"; sourceTree = "<group>"; };
+		AF536E714C8FA4A34023FCB9 /* Pods-Zhihu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zhihu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Zhihu/Pods-Zhihu.release.xcconfig"; sourceTree = "<group>"; };
 		FC8FD8341C790FB900C47EA1 /* Zhihu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zhihu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8FD8371C790FB900C47EA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC8FD8391C790FB900C47EA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +29,9 @@
 		FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC8FD8411C790FB900C47EA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC8FD8431C790FB900C47EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC8FD8551C7AAD9E00C47EA1 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +39,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2FEFFE84411C1E6723CD999 /* Pods_Zhihu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E0827372E4E37124EE55D79 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A9A2681D8B1AE4004EEE38C5 /* Pods-Zhihu.debug.xcconfig */,
+				AF536E714C8FA4A34023FCB9 /* Pods-Zhihu.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		75A87650AD2CCAC071D0ECE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B4174A25882CA5B20EF5B00 /* Pods_Zhihu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FC8FD82B1C790FB900C47EA1 = {
 			isa = PBXGroup;
 			children = (
 				FC8FD8361C790FB900C47EA1 /* Zhihu */,
 				FC8FD8351C790FB900C47EA1 /* Products */,
+				6E0827372E4E37124EE55D79 /* Pods */,
+				75A87650AD2CCAC071D0ECE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +90,9 @@
 				FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */,
 				FC8FD8401C790FB900C47EA1 /* LaunchScreen.storyboard */,
 				FC8FD8431C790FB900C47EA1 /* Info.plist */,
+				FC8FD8551C7AAD9E00C47EA1 /* ArticleTableViewCell.swift */,
+				FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */,
+				FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */,
 			);
 			path = Zhihu;
 			sourceTree = "<group>";
@@ -71,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC8FD8461C790FB900C47EA1 /* Build configuration list for PBXNativeTarget "Zhihu" */;
 			buildPhases = (
+				C61C0639CFD3F0A2F589F4D5 /* Check Pods Manifest.lock */,
 				FC8FD8301C790FB900C47EA1 /* Sources */,
 				FC8FD8311C790FB900C47EA1 /* Frameworks */,
 				FC8FD8321C790FB900C47EA1 /* Resources */,
+				86AD6B72AE0F338EDAD6D001 /* Embed Pods Frameworks */,
+				7EA79FC1254E3A7655E91BD0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,12 +166,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7EA79FC1254E3A7655E91BD0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Zhihu/Pods-Zhihu-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86AD6B72AE0F338EDAD6D001 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Zhihu/Pods-Zhihu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C61C0639CFD3F0A2F589F4D5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC8FD8301C790FB900C47EA1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC8FD85A1C7AAD9E00C47EA1 /* DateTableViewCell.swift in Sources */,
+				FC8FD8591C7AAD9E00C47EA1 /* ContentViewController.swift in Sources */,
 				FC8FD83A1C790FB900C47EA1 /* ViewController.swift in Sources */,
+				FC8FD8581C7AAD9E00C47EA1 /* ArticleTableViewCell.swift in Sources */,
 				FC8FD8381C790FB900C47EA1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +332,7 @@
 		};
 		FC8FD8471C790FB900C47EA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9A2681D8B1AE4004EEE38C5 /* Pods-Zhihu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Zhihu/Info.plist;
@@ -256,6 +344,7 @@
 		};
 		FC8FD8481C790FB900C47EA1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF536E714C8FA4A34023FCB9 /* Pods-Zhihu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Zhihu/Info.plist;
@@ -284,6 +373,7 @@
 				FC8FD8481C790FB900C47EA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
