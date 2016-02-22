@@ -19,6 +19,7 @@ class ContentViewController: UIViewController {
     var css = ""
     var html = "<html>"
     var imageURL = ""
+    
   
     override func viewDidLoad() {
         super.viewDidLoad()

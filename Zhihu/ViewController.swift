@@ -28,6 +28,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dateString = ""
     var previousStories = 0
     var dateHeadeIndexArray = [0]
+  
+    
+    
 
     //get dotay's stories
     func getArticles(url: String) {
@@ -98,6 +101,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
+        tableView.addSubview(refreshControl)
+        tableView.reloadData()
         
     }
 
@@ -113,7 +118,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //add pull to refresh
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         refreshControl.tintColor = UIColor.grayColor()
-        tableView.addSubview(refreshControl)
+        
  
     }
 
@@ -135,6 +140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let readStories = NSUserDefaults.standardUserDefaults().objectForKey("readStoreis") as? [Int]
         //set dateseperator cell
         if dateHeadeIndexArray.contains(indexPath.row)  {
             let cell = tableView.dequeueReusableCellWithIdentifier("dateCell") as! DateTableViewCell
@@ -146,15 +152,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //set stories cell
         else {
             let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! ArticleTableViewCell
-            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.titleLabel.text = self.titles[indexPath.row]
                 cell.thumbNail.hnk_setImageFromURL(NSURL(string: self.images[indexPath.row])!)
+                //set read stories text color to gray
+                if readStories?.count > 0 {
+                    if readStories!.contains(indexPath.row) {
+                        cell.titleLabel.textColor = UIColor.grayColor()
+                    } else {
+                        cell.titleLabel.textColor = UIColor.blackColor()
+                    }
+                }
             })
             return cell
            
         }
     }
+    
+    var readStories = NSUserDefaults.standardUserDefaults().objectForKey("readStories") as? [Int]
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //store read stories cell index
+        readStories?.append(indexPath.row)
+        NSUserDefaults.standardUserDefaults().setObject(readStories, forKey: "readStoreis")
+    }
+    
+    
     
     //prepare for segue to story content view
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -163,8 +186,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // disable segue when tap on date seperator cell
             if dateHeadeIndexArray.contains(tableView.indexPathForSelectedRow!.row) {
                 return
-            } else { //pass story id
+            } else {
+                //pass story id
                 destVC.url += ids[tableView.indexPathForSelectedRow!.row]
+                
+                
             }
             
         }
