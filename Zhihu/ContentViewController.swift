@@ -62,9 +62,6 @@ class ContentViewController: UIViewController {
 
             self.webView.loadHTMLString(self.html, baseURL: nil)
         }
-        
-        
-
     }
     
     override func viewDidAppear(animated: Bool) {

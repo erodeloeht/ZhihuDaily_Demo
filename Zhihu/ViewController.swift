@@ -14,14 +14,12 @@ import Alamofire
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-
+    
+    var refreshControl = UIRefreshControl()
     let baseurl = "http://news-at.zhihu.com/api/4/news"
-    
     let todayurl = "http://news-at.zhihu.com/api/4/news/latest"
-    
     let olderurl = "http://news.at.zhihu.com/api/4/news/before/"
     var date = ""
-//    var articles = [[String:AnyObject]]()
     var titles = [String]()
     var ids = [String]()
     var images = [String]()
@@ -32,7 +30,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dateHeadeIndexArray = [0]
 
     //get dotay's stories
-    
     func getArticles(url: String) {
 
         do {
@@ -49,8 +46,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.titles.append(self.dateString)
                 self.images.append(self.dateString)
                 self.ids.append(self.dateString)
-                
-
             }
             if let stories = jsonDict["stories"] as? [Dictionary<String, AnyObject>] {
                 self.previousStories += stories.count
@@ -59,12 +54,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     titles.append(story["title"]! as! String)
 
                     ids.append(String(story["id"]!))
-
-                    if let image = story["images"] as? [String] {
+                   if let image = story["images"] as? [String] {
                         images += image
                     }
-
-
                 }
             }
             
@@ -74,6 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
     }
    
+    // get more stories
     func getoldArticles(date: String){
         refreshTimes += 1
         let newDate = self.olderurl + date
@@ -86,27 +79,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    // more stories button
     @IBAction func moreButton(sender: AnyObject) {
         getoldArticles(self.date)
         
     }
-    
-    @IBAction func refreshButton(sender: AnyObject) {
+
+    // pull to refresh function
+    func refresh() {
         titles = [String]()
         ids = [String]()
         images = [String]()
+        refreshTimes = 1
+        dateHeadeIndexArray = [0]
+        previousStories = 0
         getArticles(todayurl)
-        
+        refreshControl.endRefreshing()
     }
+    
     override func viewDidAppear(animated: Bool) {
         
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set automatic row height
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 76
+        
+        //get today's stories
         getArticles(todayurl)
+        
+        //add pull to refresh
+        refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        refreshControl.tintColor = UIColor.grayColor()
+        tableView.addSubview(refreshControl)
  
     }
 
@@ -128,28 +135,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-
-        
+        //set dateseperator cell
         if dateHeadeIndexArray.contains(indexPath.row)  {
             let cell = tableView.dequeueReusableCellWithIdentifier("dateCell") as! DateTableViewCell
-            cell.dateLabel.text = titles[indexPath.row]
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                cell.dateLabel.text = self.titles[indexPath.row]
+            })
             return cell
         }
+        //set stories cell
         else {
             let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! ArticleTableViewCell
-            cell.titleLabel.text = titles[indexPath.row]
-            cell.thumbNail.hnk_setImageFromURL(NSURL(string: images[indexPath.row])!)
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                cell.titleLabel.text = self.titles[indexPath.row]
+                cell.thumbNail.hnk_setImageFromURL(NSURL(string: self.images[indexPath.row])!)
+            })
             return cell
+           
         }
     }
     
+    //prepare for segue to story content view
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowArticle" {
             let destVC = segue.destinationViewController as! ContentViewController
+            // disable segue when tap on date seperator cell
             if dateHeadeIndexArray.contains(tableView.indexPathForSelectedRow!.row) {
                 return
-            } else {
+            } else { //pass story id
                 destVC.url += ids[tableView.indexPathForSelectedRow!.row]
             }
             
