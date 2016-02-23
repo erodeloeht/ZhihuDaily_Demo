@@ -113,6 +113,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //get today's stories
         getArticles(todayurl)
+        getoldArticles(date)
         
         
         //add pull to refresh
@@ -184,6 +185,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    let threshold = CGFloat(100.0) // threshold from bottom of tableView
+    var isLoadingMore = false // flag
+    
+    //load new stories when scroll to end
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let contentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+        
+        if !isLoadingMore && (maximumOffset - contentOffset <= threshold) {
+            // Get more data - API call
+            self.isLoadingMore = true
+            
+            // Update UI
+            dispatch_async(dispatch_get_main_queue()) {
+                self.getoldArticles(self.date)
+                self.isLoadingMore = false
+            }
+        }
+    }
     
     
     //prepare for segue to story content view
