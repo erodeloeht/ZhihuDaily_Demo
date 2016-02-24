@@ -20,11 +20,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let todayurl = "http://news-at.zhihu.com/api/4/news/latest"
     let olderurl = "http://news.at.zhihu.com/api/4/news/before/"
     var date = ""
-    var titles = [String]() {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var titles = [String]()
+//        {
+//        didSet {
+//            self.tableView.reloadData()
+//        }
+//    }
     var ids = [String]()
     var images = [String]()
     var refreshTimes = 1
@@ -50,6 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.titles.append(self.dateString)
                 self.images.append(self.dateString)
                 self.ids.append(self.dateString)
+                
             }
             if let stories = jsonDict?["stories"] as? [Dictionary<String, AnyObject>] {
                 self.previousStories += stories.count
@@ -61,7 +63,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         self.images += image
                     }
                 }
+                
             }
+            self.tableView.reloadData()
         }
         
         
@@ -89,11 +93,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         dateHeadeIndexArray = [0]
         previousStories = 0
         getArticles(todayurl)
+//        getoldArticles(date)
         refreshControl.endRefreshing()
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        self.navigationController?.navigationBarHidden = false
         tableView.reloadData()
         
     }
@@ -111,6 +116,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //get today's stories
         getArticles(todayurl)
+//        getoldArticles(date)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -147,19 +153,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! ArticleTableViewCell
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                cell.titleLabel.text = self.titles[indexPath.row]
-                cell.thumbNail.hnk_setImageFromURL(NSURL(string: self.images[indexPath.row])!)
-                //set read stories text color to gray
-                if readStories?.count > 0 {
-                    if readStories!.contains(self.ids[indexPath.row]) {
-                        cell.titleLabel.textColor = UIColor.grayColor()
-                    } else {
-                        cell.titleLabel.textColor = UIColor.blackColor()
+                if self.titles.count > 0 {
+                    cell.titleLabel.text = self.titles[indexPath.row]
+                    cell.thumbNail.hnk_setImageFromURL(NSURL(string: self.images[indexPath.row])!)
+                    //set read stories text color to gray
+                    if readStories?.count > 0 {
+                        if readStories!.contains(self.ids[indexPath.row]) {
+                            cell.titleLabel.textColor = UIColor.grayColor()
+                        } else {
+                            cell.titleLabel.textColor = UIColor.blackColor()
+                        }
                     }
                 }
             })
             //load more stories when croll to end
-            if indexPath.row == self.titles.count - 4 {
+            if indexPath.row == self.titles.count - 2 {
                 getoldArticles(date)
             }
             

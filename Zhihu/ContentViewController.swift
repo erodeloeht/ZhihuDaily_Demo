@@ -28,7 +28,8 @@ class ContentViewController: UIViewController {
 //        self.navigationController?.navigationBar.shadowImage = UIImage()
 //        self.navigationController?.navigationBar.translucent = true
 //        self.navigationController?.view.backgroundColor = UIColor.clearColor()
-//        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
         //request story content and image
         Alamofire.request(.GET, url).responseJSON { (response) -> Void in
@@ -44,7 +45,7 @@ class ContentViewController: UIViewController {
             if let imgURL = jsonDict!["image"] as? String {
                 self.imageURL = imgURL
                 
-                self.imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200)
+                self.imageView.frame = CGRect(x: 0, y: -20, width: self.view.frame.width, height: 220)
                 self.imageView.contentMode = .ScaleAspectFill
                 self.imageView.clipsToBounds = true
                 self.imageView.hnk_setImageFromURL(NSURL(string: self.imageURL)!)
