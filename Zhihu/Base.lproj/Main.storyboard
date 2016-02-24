@@ -134,26 +134,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="今日热闻" id="YaM-wM-j1W">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="HAb-QN-czg">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="VXc-1v-ORY">
-                                <rect key="frame" x="447" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="More stories">
-                                            <attributes>
-                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="moreButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mKK-cy-4de"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="今日热闻" id="YaM-wM-j1W"/>
                     <connections>
                         <outlet property="tableView" destination="Xd4-DE-D1k" id="hXp-tG-Jf5"/>
                     </connections>

@@ -20,7 +20,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let todayurl = "http://news-at.zhihu.com/api/4/news/latest"
     let olderurl = "http://news.at.zhihu.com/api/4/news/before/"
     var date = ""
-    var titles = [String]()
+    var titles = [String]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     var ids = [String]()
     var images = [String]()
     var refreshTimes = 1
@@ -31,11 +35,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     //get dotay's stories
     func getArticles(url: String) {
-
-        do {
-            let jsonData = NSData(contentsOfURL: NSURL(string: url)!)
-            let jsonDict = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: .AllowFragments)
-            if let date = jsonDict["date"] as? String {
+        
+        Alamofire.request(.GET, url).responseJSON { (response) -> Void in
+            //get json data
+            let jsonDict = response.result.value as? [String: AnyObject]
+            if let date = jsonDict?["date"] as? String {
                 self.date = date
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.locale = NSLocale(localeIdentifier: "zh_Hans_CN")
@@ -46,26 +50,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.titles.append(self.dateString)
                 self.images.append(self.dateString)
                 self.ids.append(self.dateString)
-                
             }
-            if let stories = jsonDict["stories"] as? [Dictionary<String, AnyObject>] {
+            if let stories = jsonDict?["stories"] as? [Dictionary<String, AnyObject>] {
                 self.previousStories += stories.count
-                self.dateHeadeIndexArray.append(previousStories + self.refreshTimes)
+                self.dateHeadeIndexArray.append(self.previousStories + self.refreshTimes)
                 for story in stories {
-                    titles.append(story["title"]! as! String)
-
-                    ids.append(String(story["id"]!))
-                   if let image = story["images"] as? [String] {
-                        images += image
+                    self.titles.append(story["title"]! as! String)
+                    self.ids.append(String(story["id"]!))
+                    if let image = story["images"] as? [String] {
+                        self.images += image
                     }
                 }
             }
-            
-            
-        } catch {
-            
         }
-        tableView.reloadData()
+        
+        
     }
    
     // get more stories
@@ -77,18 +76,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         dateFormatter.locale = NSLocale(localeIdentifier: "zh_Hans_CN")
         dateFormatter.dateFormat = "yyyyMMdd"
         self.date = dateFormatter.stringFromDate(self.recentDate)
-        tableView.reloadData()
-        
     }
-    
-    // more stories button
-    @IBAction func moreButton(sender: AnyObject) {
-        getoldArticles(self.date)
-        
-    }
+
 
     // pull to refresh function
     func refresh() {
+
         titles = [String]()
         ids = [String]()
         images = [String]()
@@ -100,7 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
-        tableView.addSubview(refreshControl)
+        
         tableView.reloadData()
         
     }
@@ -111,16 +104,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 76
         
-        //get today's stories
-        getArticles(todayurl)
-        getoldArticles(date)
-        
-        
+        tableView.addSubview(refreshControl)
         //add pull to refresh
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         refreshControl.tintColor = UIColor.grayColor()
         
- 
+        //get today's stories
+        getArticles(todayurl)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -138,12 +128,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
+        
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let readStories = NSUserDefaults.standardUserDefaults().objectForKey("readStories") as? [String]
         //set dateseperator cell
         if dateHeadeIndexArray.contains(indexPath.row)  {
+            
             let cell = tableView.dequeueReusableCellWithIdentifier("dateCell") as! DateTableViewCell
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.dateLabel.text = self.titles[indexPath.row]
@@ -166,9 +158,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                 }
             })
+            //load more stories when croll to end
+            if indexPath.row == self.titles.count - 4 {
+                getoldArticles(date)
+            }
+            
             return cell
            
         }
+        
+
     }
     
     
@@ -185,25 +184,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    let threshold = CGFloat(100.0) // threshold from bottom of tableView
-    var isLoadingMore = false // flag
-    
     //load new stories when scroll to end
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let contentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
-        
-        if !isLoadingMore && (maximumOffset - contentOffset <= threshold) {
-            // Get more data - API call
-            self.isLoadingMore = true
-            
-            // Update UI
-            dispatch_async(dispatch_get_main_queue()) {
-                self.getoldArticles(self.date)
-                self.isLoadingMore = false
-            }
-        }
-    }
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+////
+    
     
     
     //prepare for segue to story content view
@@ -216,8 +200,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {
                 //pass story id
                 destVC.url += ids[tableView.indexPathForSelectedRow!.row]
-                
-                
+
             }
             
         }
