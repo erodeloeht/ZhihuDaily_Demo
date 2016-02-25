@@ -48,8 +48,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.images.append(self.dateString)
                 self.ids.append(self.dateString)
                 self.dateLabels.append(self.dateString)
-                
-
             }
             if let stories = jsonDict?["stories"] as? [Dictionary<String, AnyObject>] {
                 self.previousStories += stories.count
@@ -60,8 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if let image = story["images"] as? [String] {
                         self.images += image
                     }
-                }
-                
+                }    
             }
             self.tableView.reloadData()
         }
@@ -185,23 +182,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         for cell in dateSeperator {
-//            if abs(tableView.frame.origin.y - cell.frame.origin.y) == 10 {
-//                dateLabel.text = cell.dateLabel.text
-//            }
-            
-            
+    
             if let cellRow = tableView.indexPathForCell(cell) {
                 let rect = tableView.rectForRowAtIndexPath(cellRow)
                 let rectInSuperView = tableView.convertRect(rect, toView: tableView.superview)
-                
                 if rectInSuperView.minY <= 64 {
-                    
                     dateLabel.text = cell.dateLabel.text
                 } else
                     {
                     dateLabel.text = dateLabels[dateLabels.indexOf(cell.dateLabel.text!)! - 1]
                 }
-                
                 if dateLabel.text == dateLabels[1] {
                     dateLabel.text = "今日热闻"
                 }

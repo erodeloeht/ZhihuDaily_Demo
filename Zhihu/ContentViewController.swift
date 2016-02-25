@@ -19,7 +19,7 @@ class ContentViewController: UIViewController {
     var css = ""
     var html = "<html>"
     var imageURL = ""
-    
+    var loading = UIActivityIndicatorView()
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,11 @@ class ContentViewController: UIViewController {
 //        self.navigationController?.view.backgroundColor = UIColor.clearColor()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        // add loading indicator
+        loading.color = UIColor.grayColor()
+        loading.center = self.view.center
+        self.view.addSubview(loading)
+        loading.startAnimating()
         
         //request story content and image
         Alamofire.request(.GET, url).responseJSON { (response) -> Void in
@@ -64,14 +69,7 @@ class ContentViewController: UIViewController {
             self.html += "</html>"
             //load content
             self.webView.loadHTMLString(self.html, baseURL: nil)
+            self.loading.stopAnimating()
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-
-    }
-
 }
