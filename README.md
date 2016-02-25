@@ -1,8 +1,8 @@
 # ZhihuDaily_Demo
 A very simple Zhihu Daily App with basic functions. Written in Swift 2.1, Xcode 7.2.1.
 
-![App Demo 1](/Screenshot1.gif)
-![App Demo 2](/Screenshot2.gif)
+![App Demo 1](/screenshot1.gif)
+![App Demo 2](/screenshot2.gif)
 
 
 ####目前有的功能包括：
