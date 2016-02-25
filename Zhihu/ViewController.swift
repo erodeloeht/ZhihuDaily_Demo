@@ -14,18 +14,13 @@ import Alamofire
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var refreshControl = UIRefreshControl()
-    let baseurl = "http://news-at.zhihu.com/api/4/news"
     let todayurl = "http://news-at.zhihu.com/api/4/news/latest"
     let olderurl = "http://news.at.zhihu.com/api/4/news/before/"
     var date = ""
     var titles = [String]()
-//        {
-//        didSet {
-//            self.tableView.reloadData()
-//        }
-//    }
     var ids = [String]()
     var images = [String]()
     var refreshTimes = 1
@@ -33,10 +28,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dateString = ""
     var previousStories = 0
     var dateHeadeIndexArray = [0]
+    var dateSeperator = [DateTableViewCell]()
+    var dateLabels = ["今日热闻"]
 
     //get dotay's stories
     func getArticles(url: String) {
-        
         Alamofire.request(.GET, url).responseJSON { (response) -> Void in
             //get json data
             let jsonDict = response.result.value as? [String: AnyObject]
@@ -51,7 +47,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.titles.append(self.dateString)
                 self.images.append(self.dateString)
                 self.ids.append(self.dateString)
+                self.dateLabels.append(self.dateString)
                 
+
             }
             if let stories = jsonDict?["stories"] as? [Dictionary<String, AnyObject>] {
                 self.previousStories += stories.count
@@ -67,8 +65,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             self.tableView.reloadData()
         }
-        
-        
     }
    
     // get more stories
@@ -89,6 +85,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         titles = [String]()
         ids = [String]()
         images = [String]()
+//        dateLabels = ["今日热闻"]
         refreshTimes = 1
         dateHeadeIndexArray = [0]
         previousStories = 0
@@ -123,7 +120,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -134,7 +130,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
-        
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -143,6 +138,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if dateHeadeIndexArray.contains(indexPath.row)  {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("dateCell") as! DateTableViewCell
+            dateSeperator.append(cell)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 cell.dateLabel.text = self.titles[indexPath.row]
             })
@@ -170,16 +166,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if indexPath.row == self.titles.count - 2 {
                 getoldArticles(date)
             }
-            
             return cell
-           
         }
-        
-
     }
-    
-    
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //store read stories ids
         var readStories = NSUserDefaults.standardUserDefaults().objectForKey("readStories") as? [String]
@@ -191,13 +181,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         NSUserDefaults.standardUserDefaults().setObject(readStories, forKey: "readStories")
         
     }
-    
-    //load new stories when scroll to end
-//    func scrollViewDidScroll(scrollView: UIScrollView) {
-////
-    
-    
-    
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        for cell in dateSeperator {
+//            if abs(tableView.frame.origin.y - cell.frame.origin.y) == 10 {
+//                dateLabel.text = cell.dateLabel.text
+//            }
+            
+            
+            if let cellRow = tableView.indexPathForCell(cell) {
+                let rect = tableView.rectForRowAtIndexPath(cellRow)
+                let rectInSuperView = tableView.convertRect(rect, toView: tableView.superview)
+                
+                if rectInSuperView.minY <= 64 {
+                    
+                    dateLabel.text = cell.dateLabel.text
+                } else
+                    {
+                    dateLabel.text = dateLabels[dateLabels.indexOf(cell.dateLabel.text!)! - 1]
+                }
+                
+                if dateLabel.text == dateLabels[1] {
+                    dateLabel.text = "今日热闻"
+                }
+            }
+        }
+    }
+
     //prepare for segue to story content view
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowArticle" {
