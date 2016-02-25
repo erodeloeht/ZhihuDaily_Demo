@@ -16,6 +16,7 @@
 		FC8FD8581C7AAD9E00C47EA1 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8551C7AAD9E00C47EA1 /* ArticleTableViewCell.swift */; };
 		FC8FD8591C7AAD9E00C47EA1 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */; };
 		FC8FD85A1C7AAD9E00C47EA1 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */; };
+		FCD7BC5F1C7F83980048A7AE /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = FCD7BC5E1C7F83980048A7AE /* style.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		FC8FD8551C7AAD9E00C47EA1 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
+		FCD7BC5E1C7F83980048A7AE /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				FC8FD8371C790FB900C47EA1 /* AppDelegate.swift */,
+				FCD7BC5E1C7F83980048A7AE /* style.css */,
 				FC8FD8391C790FB900C47EA1 /* ViewController.swift */,
 				FC8FD83B1C790FB900C47EA1 /* Main.storyboard */,
 				FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC8FD8421C790FB900C47EA1 /* LaunchScreen.storyboard in Resources */,
+				FCD7BC5F1C7F83980048A7AE /* style.css in Resources */,
 				FC8FD83F1C790FB900C47EA1 /* Assets.xcassets in Resources */,
 				FC8FD83D1C790FB900C47EA1 /* Main.storyboard in Resources */,
 			);

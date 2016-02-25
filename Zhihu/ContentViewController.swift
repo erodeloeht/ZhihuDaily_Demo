@@ -60,7 +60,8 @@ class ContentViewController: UIViewController {
             self.html += "<head>"
             self.html += "<link rel=\"stylesheet\" href="
             self.html += "\""
-            self.html += self.css
+//            self.html += self.css
+            self.html += "style.css"
             self.html += "\""
             self.html += "</head>"
             self.html += "<body>"
@@ -68,7 +69,9 @@ class ContentViewController: UIViewController {
             self.html += "</body>"
             self.html += "</html>"
             //load content
-            self.webView.loadHTMLString(self.html, baseURL: nil)
+            let mainbundle = NSBundle.mainBundle().bundlePath
+            let bundleURL = NSURL(fileURLWithPath: mainbundle)
+            self.webView.loadHTMLString(self.html, baseURL: bundleURL)
             self.loading.stopAnimating()
         }
     }

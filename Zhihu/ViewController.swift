@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dateHeadeIndexArray = [0]
     var dateSeperator = [DateTableViewCell]()
     var dateLabels = ["今日热闻"]
+    var loading = UIActivityIndicatorView()
 
     //get dotay's stories
     func getArticles(url: String) {
@@ -103,13 +104,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 76
         
-        tableView.addSubview(refreshControl)
+        //add loading indicator
+        loading.center = self.view.center
+        loading.color = UIColor.grayColor()
+        tableView.addSubview(loading)
+        
+        
         //add pull to refresh
+        tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         refreshControl.tintColor = UIColor.grayColor()
         
+        loading.startAnimating()
+        
         //get today's stories
         getArticles(todayurl)
+        
+        loading.stopAnimating()
 //        getoldArticles(date)
     }
 
@@ -180,9 +191,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
         for cell in dateSeperator {
-    
             if let cellRow = tableView.indexPathForCell(cell) {
                 let rect = tableView.rectForRowAtIndexPath(cellRow)
                 let rectInSuperView = tableView.convertRect(rect, toView: tableView.superview)
