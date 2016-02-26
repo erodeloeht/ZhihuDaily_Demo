@@ -11,6 +11,7 @@ A simple Zhihu Daily App with basic functions. Written in Swift 2.1, Xcode 7.2.1
 ####Features included：
 - Pull down to refresh
 - Scroll to end and load new articles
+- Shake devive to toggle night mode
 - Change table title based on scroll position
 - Load local css style sheet instead of requesting from server
 - Mark read articles
