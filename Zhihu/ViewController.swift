@@ -10,6 +10,7 @@ import UIKit
 import Haneke
 import Alamofire
 
+var nightMode = false
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -31,6 +32,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dateSeperator = [DateTableViewCell]()
     var dateLabels = ["今日热闻"]
     var loading = UIActivityIndicatorView()
+
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == .MotionShake {
+            if nightMode == false {
+                self.navigationController?.navigationBar.barTintColor = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1)
+                tableView.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+                dateLabel.textColor = UIColor.whiteColor()
+                self.view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+                nightMode = true
+                tableView.reloadData()
+            }
+            else {
+                self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+                self.view.backgroundColor = UIColor.whiteColor()
+                dateLabel.textColor = UIColor.blackColor()
+                tableView.backgroundColor = UIColor.whiteColor()
+                nightMode = false
+                tableView.reloadData()
+            }
+        }
+    }
 
     //get dotay's stories
     func getArticles(url: String) {
@@ -104,10 +130,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 76
         
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         //add loading indicator
         loading.center = self.view.center
         loading.color = UIColor.grayColor()
-        tableView.addSubview(loading)
+        self.view.addSubview(loading)
         
         
         //add pull to refresh
@@ -123,10 +151,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         loading.stopAnimating()
 //        getoldArticles(date)
     }
-
-    override func viewWillAppear(animated: Bool) {
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -137,7 +161,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        if titles.count > 0 {
+            return titles.count}
+        else {
+            return 0
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -161,12 +189,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     cell.titleLabel.text = self.titles[indexPath.row]
                     cell.thumbNail.hnk_setImageFromURL(NSURL(string: self.images[indexPath.row])!)
                     //set read stories text color to gray
-                    if readStories?.count > 0 {
-                        if readStories!.contains(self.ids[indexPath.row]) {
-                            cell.titleLabel.textColor = UIColor.grayColor()
-                        } else {
-                            cell.titleLabel.textColor = UIColor.blackColor()
+                    if nightMode {
+                        cell.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+                        cell.titleLabel.textColor = UIColor.whiteColor()
+                        if readStories?.count > 0 {
+                            if readStories!.contains(self.ids[indexPath.row]) {
+                                cell.titleLabel.textColor = UIColor.grayColor()
+                            } else {
+                                cell.titleLabel.textColor = UIColor.whiteColor()
+                            }
                         }
+                    } else {
+                        cell.backgroundColor = UIColor.whiteColor()
+                        cell.titleLabel.textColor = UIColor.blackColor()
+                        if readStories?.count > 0 {
+                            if readStories!.contains(self.ids[indexPath.row]) {
+                                cell.titleLabel.textColor = UIColor.grayColor()
+                            } else {
+                                cell.titleLabel.textColor = UIColor.blackColor()
+                            }
+                        }
+
                     }
                 }
             })
