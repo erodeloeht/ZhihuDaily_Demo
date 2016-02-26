@@ -32,8 +32,8 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
 //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
 //        self.navigationController?.navigationBar.shadowImage = UIImage()
 //        self.navigationController?.navigationBar.translucent = true
-//        self.navigationController?.view.backgroundColor = UIColor.clearColor()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.navigationBar.barTintColor = UIColor.clearColor()
+//        self.navigationController?.navigationBar.alpha = 0
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         // add loading indicator
         loading.color = UIColor.grayColor()
@@ -93,11 +93,17 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         if nightMode {
             webView.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
         } else {
             webView.backgroundColor = UIColor.whiteColor()
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
 }

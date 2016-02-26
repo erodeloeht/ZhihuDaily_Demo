@@ -46,6 +46,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.view.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
                 nightMode = true
                 tableView.reloadData()
+                UIApplication.sharedApplication().statusBarStyle = .LightContent
+                
             }
             else {
                 self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
@@ -54,6 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.backgroundColor = UIColor.whiteColor()
                 nightMode = false
                 tableView.reloadData()
+                UIApplication.sharedApplication().statusBarStyle = .Default
             }
         }
     }
@@ -119,13 +122,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
+//        self.navigationController?.navigationBarHidden = false
         tableView.reloadData()
         
     }
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .Slide)
+        
         //set automatic row height
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 76
@@ -136,8 +143,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         loading.center = self.view.center
         loading.color = UIColor.grayColor()
         self.view.addSubview(loading)
-        
-        
+   
         //add pull to refresh
         tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
@@ -240,8 +246,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let rectInSuperView = tableView.convertRect(rect, toView: tableView.superview)
                 if rectInSuperView.minY <= 64 {
                     dateLabel.text = cell.dateLabel.text
-                } else
-                    {
+                } else {
                     dateLabel.text = dateLabels[dateLabels.indexOf(cell.dateLabel.text!)! - 1]
                 }
                 if dateLabel.text == dateLabels[1] {
