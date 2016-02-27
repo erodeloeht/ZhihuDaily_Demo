@@ -57,7 +57,7 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
         } else {
             self.webView.opaque = false
             self.webView.backgroundColor = UIColor.whiteColor()
-            toolbar.barTintColor = UIColor.lightGrayColor()
+//            toolbar.barTintColor = UIColor.lightGrayColor()
         }
         
         Alamofire.request(.GET, url).responseJSON { (response) -> Void in
@@ -65,10 +65,6 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
             let jsonDict = response.result.value as? [String: AnyObject]
             //get content body
             let body = jsonDict!["body"] as! String
-            //get content css style link
-//            if let css = jsonDict!["css"] as? [String] {
-//                self.css = css[0]
-//            }
             //get image URL and pass on to imageView which is embedded in webView as scrollview
             if let imgURL = jsonDict!["image"] as? String {
                 self.imageURL = imgURL

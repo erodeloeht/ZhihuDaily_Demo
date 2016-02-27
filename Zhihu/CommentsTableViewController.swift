@@ -13,8 +13,8 @@ class CommentsTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     var id = ""
-    var commentList = [AnyObject]()
-    var commenterList = [AnyObject]()
+    var commentList = [String]()
+    var commenterList = [String]()
 
     @IBOutlet weak var tableView: UITableView!
     @IBAction func done(sender: AnyObject) {
@@ -30,8 +30,12 @@ class CommentsTableViewController: UIViewController, UITableViewDelegate, UITabl
             if let comments = jsonDict?["comments"] as? [[String: AnyObject]] {
                 if comments.count > 0 {
                     for comment in comments {
-                        self.commentList.append(comment["content"]!)
-                        self.commenterList.append(comment["author"]!)
+                        if let content = comment["content"] as? String {
+                            self.commentList.append(content)
+                        }
+                        if let author = comment["author"] as? String {
+                            self.commenterList.append(author)
+                        }
                     }
                 }
             }
@@ -59,10 +63,9 @@ class CommentsTableViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CommentTableViewCell
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            cell.author.text = self.commenterList[indexPath.row] as? String
-            cell.comment.text = self.commentList[indexPath.row] as? String
+            cell.author.text = self.commenterList[indexPath.row]
+            cell.comment.text = self.commentList[indexPath.row]
         }
-        
         return cell
     }
 
