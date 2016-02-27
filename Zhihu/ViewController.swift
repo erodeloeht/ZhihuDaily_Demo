@@ -10,12 +10,14 @@ import UIKit
 import Haneke
 import Alamofire
 
+
 var nightMode = false
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
+    
     
     var refreshControl = UIRefreshControl()
     let todayurl = "http://news-at.zhihu.com/api/4/news/latest"
@@ -133,6 +135,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .Slide)
         
+        
+        //pan to show menu
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
         //set automatic row height
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 76
@@ -215,7 +221,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 cell.titleLabel.textColor = UIColor.blackColor()
                             }
                         }
-
                     }
                 }
             })
@@ -266,7 +271,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {
                 //pass story id
                 destVC.url += ids[tableView.indexPathForSelectedRow!.row]
-
+                destVC.id += ids[tableView.indexPathForSelectedRow!.row]
             }
             
         }

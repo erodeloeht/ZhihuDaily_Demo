@@ -13,8 +13,21 @@ import Alamofire
 class ContentViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    @IBAction func back(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    @IBAction func next(sender: AnyObject) {
+        
+    }
+    
+    
     
     var imageView = UIImageView()
+    var id = ""
     var url = "http://news-at.zhihu.com/api/4/news/"
     var css = ""
     var html = "<html>"
@@ -29,19 +42,24 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //hide navigation bar
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.navigationBar.translucent = true
-//        self.navigationController?.navigationBar.barTintColor = UIColor.clearColor()
-//        self.navigationController?.navigationBar.alpha = 0
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         // add loading indicator
         loading.color = UIColor.grayColor()
         loading.center = self.view.center
         self.view.addSubview(loading)
         loading.startAnimating()
-        
         //request story content and image
+        
+        if nightMode {
+            self.webView.opaque = false
+            self.webView.backgroundColor = UIColor.clearColor()
+            toolbar.barTintColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+        } else {
+            self.webView.opaque = false
+            self.webView.backgroundColor = UIColor.whiteColor()
+            toolbar.barTintColor = UIColor.lightGrayColor()
+        }
+        
         Alamofire.request(.GET, url).responseJSON { (response) -> Void in
             //get json data
             let jsonDict = response.result.value as? [String: AnyObject]
@@ -80,13 +98,7 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
             self.html += "</html>"
             let mainbundle = NSBundle.mainBundle().bundlePath
             let bundleURL = NSURL(fileURLWithPath: mainbundle)
-            if nightMode {
-                self.webView.opaque = false
-                self.webView.backgroundColor = UIColor.clearColor()
-            } else {
-                self.webView.opaque = false
-                self.webView.backgroundColor = UIColor.whiteColor()
-            }
+
             self.webView.loadHTMLString(self.html, baseURL: bundleURL)
             self.loading.stopAnimating()
         }
@@ -104,6 +116,13 @@ class ContentViewController: UIViewController, UIWebViewDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showComments" {
+            let destVC = segue.destinationViewController as! CommentsTableViewController
+            destVC.id = self.id
+        }
     }
     
 }

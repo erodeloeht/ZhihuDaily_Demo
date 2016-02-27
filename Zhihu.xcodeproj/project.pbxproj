@@ -17,6 +17,10 @@
 		FC8FD8591C7AAD9E00C47EA1 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */; };
 		FC8FD85A1C7AAD9E00C47EA1 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */; };
 		FCD7BC5F1C7F83980048A7AE /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = FCD7BC5E1C7F83980048A7AE /* style.css */; };
+		FCD7BC631C80EEAB0048A7AE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD7BC621C80EEAB0048A7AE /* SWRevealViewController.m */; };
+		FCD7BC651C80F3D90048A7AE /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD7BC641C80F3D90048A7AE /* MenuTableViewController.swift */; };
+		FCD7BC671C8101480048A7AE /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD7BC661C8101480048A7AE /* CommentsTableViewController.swift */; };
+		FCD7BC691C81024E0048A7AE /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD7BC681C81024E0048A7AE /* CommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,12 @@
 		FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		FCD7BC5E1C7F83980048A7AE /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		FCD7BC601C80EEAA0048A7AE /* Zhihu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Zhihu-Bridging-Header.h"; sourceTree = "<group>"; };
+		FCD7BC611C80EEAB0048A7AE /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		FCD7BC621C80EEAB0048A7AE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		FCD7BC641C80F3D90048A7AE /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		FCD7BC661C8101480048A7AE /* CommentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
+		FCD7BC681C81024E0048A7AE /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,12 +100,18 @@
 				FCD7BC5E1C7F83980048A7AE /* style.css */,
 				FC8FD8391C790FB900C47EA1 /* ViewController.swift */,
 				FC8FD83B1C790FB900C47EA1 /* Main.storyboard */,
+				FCD7BC681C81024E0048A7AE /* CommentTableViewCell.swift */,
+				FCD7BC661C8101480048A7AE /* CommentsTableViewController.swift */,
+				FCD7BC641C80F3D90048A7AE /* MenuTableViewController.swift */,
 				FC8FD83E1C790FB900C47EA1 /* Assets.xcassets */,
 				FC8FD8401C790FB900C47EA1 /* LaunchScreen.storyboard */,
 				FC8FD8431C790FB900C47EA1 /* Info.plist */,
 				FC8FD8551C7AAD9E00C47EA1 /* ArticleTableViewCell.swift */,
 				FC8FD8561C7AAD9E00C47EA1 /* ContentViewController.swift */,
 				FC8FD8571C7AAD9E00C47EA1 /* DateTableViewCell.swift */,
+				FCD7BC611C80EEAB0048A7AE /* SWRevealViewController.h */,
+				FCD7BC621C80EEAB0048A7AE /* SWRevealViewController.m */,
+				FCD7BC601C80EEAA0048A7AE /* Zhihu-Bridging-Header.h */,
 			);
 			path = Zhihu;
 			sourceTree = "<group>";
@@ -224,10 +240,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC8FD85A1C7AAD9E00C47EA1 /* DateTableViewCell.swift in Sources */,
+				FCD7BC651C80F3D90048A7AE /* MenuTableViewController.swift in Sources */,
 				FC8FD8591C7AAD9E00C47EA1 /* ContentViewController.swift in Sources */,
+				FCD7BC671C8101480048A7AE /* CommentsTableViewController.swift in Sources */,
+				FCD7BC691C81024E0048A7AE /* CommentTableViewCell.swift in Sources */,
 				FC8FD83A1C790FB900C47EA1 /* ViewController.swift in Sources */,
 				FC8FD8581C7AAD9E00C47EA1 /* ArticleTableViewCell.swift in Sources */,
 				FC8FD8381C790FB900C47EA1 /* AppDelegate.swift in Sources */,
+				FCD7BC631C80EEAB0048A7AE /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,11 +359,14 @@
 			baseConfigurationReference = A9A2681D8B1AE4004EEE38C5 /* Pods-Zhihu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Zhihu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ur.leo.Zhihu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Zhihu/Zhihu-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -353,11 +376,13 @@
 			baseConfigurationReference = AF536E714C8FA4A34023FCB9 /* Pods-Zhihu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Zhihu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ur.leo.Zhihu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Zhihu/Zhihu-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
